@@ -1,7 +1,5 @@
 # Bloom Break
 
-![Bloom Break Flower](icons/icon128.png)
-
 A browser extension that adds a floating flower icon to every page. Click it to open a full-screen bloom overlay and play a calming video.
 
 ##  Features
