@@ -1,0 +1,155 @@
+#bloomFlower {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  cursor: pointer;
+  z-index: 999999;
+
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+#bloomFlower:hover {
+  transform: scale(1.1);
+}
+
+#bloomOverlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  z-index: 999999;
+  animation: bloomOverlayEnter 500ms ease forwards;
+}
+
+.bloomOverlay__backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top, rgba(255, 179, 209, 0.35), transparent 34%),
+    radial-gradient(circle at bottom, rgba(255, 213, 143, 0.28), transparent 28%),
+    rgba(14, 7, 10, 0.92);
+  backdrop-filter: blur(14px);
+}
+
+.bloomOverlay__glow {
+  position: absolute;
+  width: 70vmax;
+  height: 70vmax;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 228, 183, 0.18), rgba(255, 180, 208, 0.12) 34%, transparent 66%);
+  filter: blur(26px);
+  animation: bloomGlow 8s linear infinite;
+}
+
+.bloomOverlay__video {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  object-fit: contain;
+  background: transparent;
+  box-shadow: none;
+}
+
+.bloomOverlay__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 245, 248, 0.14);
+  color: #fff7f6;
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+  backdrop-filter: blur(10px);
+}
+
+#bloomOverlay.is-finished .bloomOverlay__video {
+  animation: bloomVideoExit 850ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+#bloomOverlay.is-leaving {
+  pointer-events: none;
+}
+
+#bloomOverlay.is-leaving .bloomOverlay__backdrop {
+  animation: bloomBackdropExit 900ms ease forwards;
+}
+
+#bloomOverlay.is-leaving .bloomOverlay__glow {
+  animation: bloomGlowExit 900ms ease forwards;
+}
+
+#bloomOverlay.is-leaving .bloomOverlay__video {
+  animation: bloomVideoExit 900ms cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes bloomOverlayEnter {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bloomGlow {
+  0% {
+    transform: scale(0.95) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.08) rotate(180deg);
+  }
+  100% {
+    transform: scale(0.95) rotate(360deg);
+  }
+}
+
+@keyframes bloomBackdropExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes bloomGlowExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@keyframes bloomVideoExit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: saturate(1) brightness(1);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+    filter: saturate(1.15) brightness(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+    filter: saturate(1.35) brightness(1.18) blur(12px);
+  }
+}
