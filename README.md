@@ -1,6 +1,6 @@
 # Bloom Break
 
-![Bloom Break Flower](icon128.png)
+![Bloom Break Flower](flower.gif)
 
 A browser extension that adds a floating flower icon to every page. Click it to open a full-screen bloom overlay and play a calming video.
 
